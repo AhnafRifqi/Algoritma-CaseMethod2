@@ -1,8 +1,7 @@
-
 class Kendaraan {
-    private String platNomor;
-    private String tipe;
-    private String merk;
+    String platNomor;
+    String tipe;
+    String merk;
 
     public Kendaraan(String platNomor, String tipe, String merk) {
         this.platNomor = platNomor;
@@ -28,7 +27,6 @@ class Kendaraan {
         return merk;
     }
 
-    @Override
     public String toString() {
         return "Kendaraan [platNomor=" + platNomor + ", tipe=" + tipe + ", merk=" + merk + "]";
     }
