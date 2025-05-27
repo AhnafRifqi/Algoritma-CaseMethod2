@@ -1,17 +1,15 @@
-
 import java.util.Scanner;
 
 public class Main {
-
     public static void tampilkanMenu() {
-        System.out.println("\nMenu SPBU");
+        System.out.println("\n--- Menu SPBU ---");
         System.out.println("1. Tambah Antrian Kendaraan");
         System.out.println("2. Tampilkan Antrian");
         System.out.println("3. Cek Jumlah Antrian Kendaraan");
         System.out.println("4. Layani Kendaraan");
         System.out.println("5. Tampilkan Riwayat Transaksi");
         System.out.println("0. Keluar");
-        System.out.print("Pilih menu: ");
+        System.out.print("Pilih: ");
     }
 
     public static void main(String[] args) {
@@ -20,8 +18,8 @@ public class Main {
         int pilihan;
 
         do {
-            tampilkanMenu(); // Memanggil fungsi tampilan menu
-            pilihan = Integer.parseInt(scanner.nextLine()); // NO TRY-CATCH
+            tampilkanMenu(); 
+            pilihan = Integer.parseInt(scanner.nextLine()); 
             
             switch (pilihan) {
                 case 1:
@@ -46,7 +44,6 @@ public class Main {
                     System.out.println("Pilihan tidak valid. Silakan coba lagi.");
             }
         } while (pilihan != 0);
-
         scanner.close();
     }
 }

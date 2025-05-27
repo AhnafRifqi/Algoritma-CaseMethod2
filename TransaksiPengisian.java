@@ -1,9 +1,8 @@
-
 class TransaksiPengisian {
-    private Kendaraan kendaraan;
-    private BBM bbm;
-    private double liter;
-    private double totalBayar;
+    Kendaraan kendaraan;
+    BBM bbm;
+    double liter;
+    double totalBayar;
 
     public TransaksiPengisian(Kendaraan kendaraan, BBM bbm, double liter) {
         this.kendaraan = kendaraan;
@@ -30,11 +29,11 @@ class TransaksiPengisian {
 
     public void tampilkanDetailTransaksi() {
         System.out.println("--- Detail Transaksi ---");
-        System.out.println("Kendaraan: " + kendaraan.getPlatNomor() + " (" + kendaraan.getMerk() + " " + kendaraan.getTipe() + ")");
-        System.out.println("Jenis BBM: " + bbm.getNamaBBM());
-        System.out.println("Harga per Liter: Rp " + String.format("%.2f", bbm.getHargaPerLiter()));
-        System.out.println("Jumlah Liter: " + String.format("%.2f", liter) + " L");
-        System.out.println("Total Bayar: Rp " + String.format("%.2f", totalBayar));
+        System.out.printf("Kendaraan      : %s (%s %s)%n", kendaraan.getPlatNomor(), kendaraan.getMerk(), kendaraan.getTipe());
+        System.out.printf("Jenis BBM      : %s%n", bbm.getNamaBBM());
+        System.out.printf("Harga per Liter: Rp %.2f%n", bbm.getHargaPerLiter());
+        System.out.printf("Jumlah Liter   : %.2f L%n", liter);
+        System.out.printf("Total Bayar    : Rp %.2f%n", totalBayar);
         System.out.println("------------------------");
     }
 }

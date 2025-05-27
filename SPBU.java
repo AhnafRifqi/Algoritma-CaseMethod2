@@ -1,9 +1,5 @@
-// SPBU.java
 import java.util.Scanner;
 
-// --- Custom Data Structures ---
-
-// Custom Node for LinkedList
 class Node {
     Kendaraan data;
     Node next;
@@ -14,11 +10,10 @@ class Node {
     }
 }
 
-// Custom LinkedList to act as a Queue for Kendaraan
 class CustomLinkedListQueue {
-    private Node head;
-    private Node tail;
-    private int size;
+    Node head;
+    Node tail;
+    int size;
 
     public CustomLinkedListQueue() {
         head = null;
@@ -26,7 +21,6 @@ class CustomLinkedListQueue {
         size = 0;
     }
 
-    // Add to the end (enqueue)
     public void addLast(Kendaraan data) {
         Node newNode = new Node(data);
         if (isEmpty()) {
@@ -39,14 +33,13 @@ class CustomLinkedListQueue {
         size++;
     }
 
-    // Remove from the beginning (dequeue)
     public Kendaraan removeFirst() {
         if (isEmpty()) {
-            return null; // Or throw an exception if preferred for a proper queue
+            return null;
         }
         Kendaraan data = head.data;
         head = head.next;
-        if (head == null) { // If the list becomes empty
+        if (head == null) { 
             tail = null;
         }
         size--;
@@ -61,7 +54,6 @@ class CustomLinkedListQueue {
         return size;
     }
 
-    // Method to iterate and display elements (instead of get(index))
     public void display() {
         if (isEmpty()) {
             System.out.println("Antrian kosong.");
@@ -77,25 +69,23 @@ class CustomLinkedListQueue {
     }
 }
 
-// Custom Array-based structure for storing TransaksiPengisian (simulating ArrayList/Queue)
 class CustomArrayTransactionHistory {
-    private TransaksiPengisian[] elements;
-    private int size;
-    private static final int DEFAULT_CAPACITY = 10; // Initial capacity
+    TransaksiPengisian[] elements;
+    int size;
 
     public CustomArrayTransactionHistory() {
-        elements = new TransaksiPengisian[DEFAULT_CAPACITY];
+        elements = new TransaksiPengisian[10]; 
         size = 0;
     }
 
     public void add(TransaksiPengisian data) {
         if (size == elements.length) {
-            resize(); // Double the capacity if full
+            resize();
         }
         elements[size++] = data;
     }
 
-    private void resize() {
+    public void resize() {
         int newCapacity = elements.length * 2;
         TransaksiPengisian[] newElements = new TransaksiPengisian[newCapacity];
         for (int i = 0; i < size; i++) {
@@ -106,7 +96,8 @@ class CustomArrayTransactionHistory {
 
     public TransaksiPengisian get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+            System.out.println("Index tidak valid: " + index + ". Ukuran saat ini: " + size);
+            return null;
         }
         return elements[index];
     }
@@ -120,24 +111,22 @@ class CustomArrayTransactionHistory {
     }
 }
 
-// SPBU System Class (without main method)
 public class SPBU {
-
-    private CustomLinkedListQueue antrianKendaraan; // Custom LinkedList as a Queue
-    private CustomArrayTransactionHistory riwayatTransaksi; // Custom Array to store history
-    private BBM[] daftarBBM; // Simple array for BBM types
-    private int jumlahBBM = 0; // Counter for actual number of BBM types
+    public CustomLinkedListQueue antrianKendaraan; 
+    public CustomArrayTransactionHistory riwayatTransaksi; 
+    public BBM[] daftarBBM; 
+    public int jumlahBBM = 0; 
 
     public SPBU() {
         antrianKendaraan = new CustomLinkedListQueue();
         riwayatTransaksi = new CustomArrayTransactionHistory();
-        daftarBBM = new BBM[5]; // Fixed size for available BBM types for simplicity.
+        daftarBBM = new BBM[5];
         tambahJenisBBM(new BBM("Pertalite", 10000.0));
         tambahJenisBBM(new BBM("Pertamax", 14000.0));
         tambahJenisBBM(new BBM("Pertamax Turbo", 15300.0));
     }
 
-    private void tambahJenisBBM(BBM bbm) {
+    public void tambahJenisBBM(BBM bbm) {
         if (jumlahBBM < daftarBBM.length) {
             daftarBBM[jumlahBBM++] = bbm;
         } else {
@@ -151,12 +140,12 @@ public class SPBU {
         String platNomor = scanner.nextLine();
         System.out.print("Masukkan Tipe Kendaraan: ");
         String tipe = scanner.nextLine();
-        System.out.print("Masukkan Merk Kendaraan: ");
+        System.out.print("Masukkan Merk: ");
         String merk = scanner.nextLine();
 
         Kendaraan newKendaraan = new Kendaraan(platNomor, tipe, merk);
         antrianKendaraan.addLast(newKendaraan);
-        System.out.println("Kendaraan dengan plat " + platNomor + " berhasil ditambahkan ke antrian.");
+        System.out.println(">> Kendaraan dengan plat " + platNomor + " berhasil ditambahkan ke antrian.");
     }
 
     public void tampilkanAntrian() {
@@ -187,26 +176,24 @@ public class SPBU {
         int pilihanBBM;
         
         System.out.print("Masukkan pilihan BBM (nomor): ");
-        pilihanBBM = Integer.parseInt(scanner.nextLine()); // NO TRY-CATCH
+        pilihanBBM = Integer.parseInt(scanner.nextLine()); 
         
         if (pilihanBBM > 0 && pilihanBBM <= jumlahBBM) {
             selectedBBM = daftarBBM[pilihanBBM - 1];
         } else {
-            System.out.println("Pilihan tidak valid. Menggunakan Pertalite sebagai default."); // Fallback if invalid
-            selectedBBM = daftarBBM[0]; // Default to first BBM type
+            System.out.println("Pilihan tidak valid. Menggunakan Pertalite sebagai default."); 
+            selectedBBM = daftarBBM[0]; 
         }
-        
 
         double liter;
         System.out.print("Masukkan jumlah liter BBM yang diisi: ");
-        liter = Double.parseDouble(scanner.nextLine()); // NO TRY-CATCH
+        liter = Double.parseDouble(scanner.nextLine()); 
         
         if (liter <= 0) {
-            System.out.println("Jumlah liter harus lebih dari 0. Menggunakan 1.0 liter sebagai default."); // Fallback if invalid
-            liter = 1.0; // Default to 1 liter
+            System.out.println("Jumlah liter harus lebih dari 0. Menggunakan 1.0 liter sebagai default."); 
+            liter = 1.0;
         }
         
-
         TransaksiPengisian transaksi = new TransaksiPengisian(servedKendaraan, selectedBBM, liter);
         riwayatTransaksi.add(transaksi);
         System.out.println("Transaksi pengisian BBM berhasil dicatat.");
