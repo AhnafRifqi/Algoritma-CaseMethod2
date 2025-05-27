@@ -1,9 +1,10 @@
-public class kendaraan {
-    public String platNomor;
-    public String tipe;
-    public String merk;
 
-    public kendaraan(String platNomor, String tipe, String merk) {
+class Kendaraan {
+    private String platNomor;
+    private String tipe;
+    private String merk;
+
+    public Kendaraan(String platNomor, String tipe, String merk) {
         this.platNomor = platNomor;
         this.tipe = tipe;
         this.merk = merk;
@@ -27,7 +28,7 @@ public class kendaraan {
         return merk;
     }
 
-    
+    @Override
     public String toString() {
         return "Kendaraan [platNomor=" + platNomor + ", tipe=" + tipe + ", merk=" + merk + "]";
     }
