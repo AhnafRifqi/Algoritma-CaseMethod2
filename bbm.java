@@ -1,8 +1,9 @@
-public class bbm {
-    public String namaBBM;
-    public double hargaPerLiter;
 
-    public bbm(String namaBBM, double hargaPerLiter) {
+class BBM {
+    private String namaBBM;
+    private double hargaPerLiter;
+
+    public BBM(String namaBBM, double hargaPerLiter) {
         this.namaBBM = namaBBM;
         this.hargaPerLiter = hargaPerLiter;
     }
@@ -15,6 +16,7 @@ public class bbm {
         return hargaPerLiter;
     }
 
+    @Override
     public String toString() {
         return "BBM [namaBBM=" + namaBBM + ", hargaPerLiter=" + hargaPerLiter + "]";
     }
