@@ -10,12 +10,12 @@ class Node {
     }
 }
 
-class CustomLinkedListQueue {
+class LLQueue {
     Node head;
     Node tail;
     int size;
 
-    public CustomLinkedListQueue() {
+    public LLQueue() {
         head = null;
         tail = null;
         size = 0;
@@ -69,29 +69,29 @@ class CustomLinkedListQueue {
     }
 }
 
-class CustomArrayTransactionHistory {
-    TransaksiPengisian[] elements;
+class HistoriTransaksi {
+    TransaksiPengisian[] transaksi;
     int size;
 
-    public CustomArrayTransactionHistory() {
-        elements = new TransaksiPengisian[10]; 
+    public HistoriTransaksi() {
+        transaksi = new TransaksiPengisian[10]; 
         size = 0;
     }
 
     public void add(TransaksiPengisian data) {
-        if (size == elements.length) {
+        if (size == transaksi.length) {
             resize();
         }
-        elements[size++] = data;
+        transaksi[size++] = data;
     }
 
     public void resize() {
-        int newCapacity = elements.length * 2;
-        TransaksiPengisian[] newElements = new TransaksiPengisian[newCapacity];
+        int newCapacity = transaksi.length * 2;
+        TransaksiPengisian[] newtransaksi = new TransaksiPengisian[newCapacity];
         for (int i = 0; i < size; i++) {
-            newElements[i] = elements[i];
+            newtransaksi[i] = transaksi[i];
         }
-        elements = newElements;
+        transaksi = newtransaksi;
     }
 
     public TransaksiPengisian get(int index) {
@@ -99,7 +99,7 @@ class CustomArrayTransactionHistory {
             System.out.println("Index tidak valid: " + index + ". Ukuran saat ini: " + size);
             return null;
         }
-        return elements[index];
+        return transaksi[index];
     }
 
     public int size() {
@@ -112,14 +112,14 @@ class CustomArrayTransactionHistory {
 }
 
 public class SPBU {
-    public CustomLinkedListQueue antrianKendaraan; 
-    public CustomArrayTransactionHistory riwayatTransaksi; 
-    public BBM[] daftarBBM; 
-    public int jumlahBBM = 0; 
+    LLQueue antrianKendaraan; 
+    HistoriTransaksi riwayatTransaksi; 
+    BBM[] daftarBBM; 
+    int jumlahBBM = 0; 
 
     public SPBU() {
-        antrianKendaraan = new CustomLinkedListQueue();
-        riwayatTransaksi = new CustomArrayTransactionHistory();
+        antrianKendaraan = new LLQueue();
+        riwayatTransaksi = new HistoriTransaksi();
         daftarBBM = new BBM[5];
         tambahJenisBBM(new BBM("Pertalite", 10000.0));
         tambahJenisBBM(new BBM("Pertamax", 14000.0));
