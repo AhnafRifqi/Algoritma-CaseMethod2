@@ -120,7 +120,7 @@ class CustomArrayTransactionHistory {
     }
 }
 
-// Main SPBU System Class
+// SPBU System Class (without main method)
 public class SPBU {
 
     private CustomLinkedListQueue antrianKendaraan; // Custom LinkedList as a Queue
@@ -132,14 +132,11 @@ public class SPBU {
         antrianKendaraan = new CustomLinkedListQueue();
         riwayatTransaksi = new CustomArrayTransactionHistory();
         daftarBBM = new BBM[5]; // Fixed size for available BBM types for simplicity.
-                                 // This can be changed or made dynamic similarly to CustomArrayTransactionHistory.
-        // Initialize some BBM types
         tambahJenisBBM(new BBM("Pertalite", 10000.0));
         tambahJenisBBM(new BBM("Pertamax", 14000.0));
         tambahJenisBBM(new BBM("Pertamax Turbo", 15300.0));
     }
 
-    // Helper method to add BBM types to our simple array
     private void tambahJenisBBM(BBM bbm) {
         if (jumlahBBM < daftarBBM.length) {
             daftarBBM[jumlahBBM++] = bbm;
@@ -158,13 +155,13 @@ public class SPBU {
         String merk = scanner.nextLine();
 
         Kendaraan newKendaraan = new Kendaraan(platNomor, tipe, merk);
-        antrianKendaraan.addLast(newKendaraan); // Adds to the end of the queue
+        antrianKendaraan.addLast(newKendaraan);
         System.out.println("Kendaraan dengan plat " + platNomor + " berhasil ditambahkan ke antrian.");
     }
 
     public void tampilkanAntrian() {
         System.out.println("\n--- Daftar Antrian Kendaraan Saat Ini ---");
-        antrianKendaraan.display(); // Uses the custom display method
+        antrianKendaraan.display();
     }
 
     public void cekJumlahAntrianKendaraan() {
@@ -179,47 +176,39 @@ public class SPBU {
             return;
         }
 
-        Kendaraan servedKendaraan = antrianKendaraan.removeFirst(); // Removes the head of the queue
+        Kendaraan servedKendaraan = antrianKendaraan.removeFirst();
         System.out.println("Melayani kendaraan: " + servedKendaraan.getPlatNomor());
 
         System.out.println("Pilih jenis BBM:");
-        for (int i = 0; i < jumlahBBM; i++) { // Iterate only up to actual number of BBMs
+        for (int i = 0; i < jumlahBBM; i++) {
             System.out.println((i + 1) + ". " + daftarBBM[i].getNamaBBM() + " (Rp " + String.format("%.2f", daftarBBM[i].getHargaPerLiter()) + "/L)");
         }
         BBM selectedBBM = null;
         int pilihanBBM;
-        while (true) {
-            System.out.print("Masukkan pilihan BBM (nomor): ");
-            try {
-                pilihanBBM = Integer.parseInt(scanner.nextLine());
-                if (pilihanBBM > 0 && pilihanBBM <= jumlahBBM) {
-                    selectedBBM = daftarBBM[pilihanBBM - 1];
-                    break;
-                } else {
-                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Input tidak valid. Masukkan angka.");
-            }
+        
+        System.out.print("Masukkan pilihan BBM (nomor): ");
+        pilihanBBM = Integer.parseInt(scanner.nextLine()); // NO TRY-CATCH
+        
+        if (pilihanBBM > 0 && pilihanBBM <= jumlahBBM) {
+            selectedBBM = daftarBBM[pilihanBBM - 1];
+        } else {
+            System.out.println("Pilihan tidak valid. Menggunakan Pertalite sebagai default."); // Fallback if invalid
+            selectedBBM = daftarBBM[0]; // Default to first BBM type
         }
+        
 
         double liter;
-        while (true) {
-            System.out.print("Masukkan jumlah liter BBM yang diisi: ");
-            try {
-                liter = Double.parseDouble(scanner.nextLine());
-                if (liter > 0) {
-                    break;
-                } else {
-                    System.out.println("Jumlah liter harus lebih dari 0.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Input tidak valid. Masukkan angka.");
-            }
+        System.out.print("Masukkan jumlah liter BBM yang diisi: ");
+        liter = Double.parseDouble(scanner.nextLine()); // NO TRY-CATCH
+        
+        if (liter <= 0) {
+            System.out.println("Jumlah liter harus lebih dari 0. Menggunakan 1.0 liter sebagai default."); // Fallback if invalid
+            liter = 1.0; // Default to 1 liter
         }
+        
 
         TransaksiPengisian transaksi = new TransaksiPengisian(servedKendaraan, selectedBBM, liter);
-        riwayatTransaksi.add(transaksi); // Add to the end of the history list
+        riwayatTransaksi.add(transaksi);
         System.out.println("Transaksi pengisian BBM berhasil dicatat.");
         transaksi.tampilkanDetailTransaksi();
     }
@@ -232,59 +221,8 @@ public class SPBU {
             for (int i = 0; i < riwayatTransaksi.size(); i++) {
                 System.out.println("Transaksi ke-" + (i + 1));
                 riwayatTransaksi.get(i).tampilkanDetailTransaksi();
-                System.out.println(); // Add a blank line for readability
+                System.out.println();
             }
         }
-    }
-
-    public void tampilkanMenu() {
-        System.out.println("\nMenu SPBU");
-        System.out.println("1. Tambah Antrian Kendaraan");
-        System.out.println("2. Tampilkan Antrian");
-        System.out.println("3. Cek Jumlah Antrian Kendaraan");
-        System.out.println("4. Layani Kendaraan");
-        System.out.println("5. Tampilkan Riwayat Transaksi");
-        System.out.println("0. Keluar");
-        System.out.print("Pilih menu: ");
-    }
-
-    public static void main(String[] args) {
-        SPBU spbu = new SPBU();
-        Scanner scanner = new Scanner(System.in);
-        int pilihan;
-
-        do {
-            spbu.tampilkanMenu();
-            try {
-                pilihan = Integer.parseInt(scanner.nextLine());
-                switch (pilihan) {
-                    case 1:
-                        spbu.tambahAntrianKendaraan(scanner);
-                        break;
-                    case 2:
-                        spbu.tampilkanAntrian();
-                        break;
-                    case 3:
-                        spbu.cekJumlahAntrianKendaraan();
-                        break;
-                    case 4:
-                        spbu.layaniKendaraan(scanner);
-                        break;
-                    case 5:
-                        spbu.tampilkanRiwayatTransaksi();
-                        break;
-                    case 0:
-                        System.out.println("Terima kasih telah menggunakan sistem SPBU.");
-                        break;
-                    default:
-                        System.out.println("Pilihan tidak valid. Silakan coba lagi.");
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Input tidak valid. Masukkan angka.");
-                pilihan = -1; // To keep the loop running
-            }
-        } while (pilihan != 0);
-
-        scanner.close();
     }
 }
