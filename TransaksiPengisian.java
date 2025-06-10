@@ -1,23 +1,22 @@
-class TransaksiPengisian { // Deklarasi kelas bernama TransaksiPengisian.
-    
-    Kendaraan kendaraan; // Mendeklarasikan variabel instance untuk menyimpan objek Kendaraan yang melakukan transaksi.
-    BBM bbm; // Mendeklarasikan variabel instance untuk menyimpan objek BBM yang diisi.
-    double liter; // Mendeklarasikan variabel instance untuk menyimpan jumlah liter BBM yang diisi.
-    double totalBayar; // Mendeklarasikan variabel instance untuk menyimpan total biaya transaksi.
+class TransaksiPengisian {
+    Kendaraan kendaraan;
+    bbm bbm;
+    double liter;
+    double totalBayar;
 
-    public TransaksiPengisian(Kendaraan kendaraan, BBM bbm, double liter) { // Konstruktor kelas TransaksiPengisian.
-        this.kendaraan = kendaraan; // Menginisialisasi kendaraan dengan objek Kendaraan yang diberikan.
-        this.bbm = bbm; // Menginisialisasi bbm dengan objek BBM yang diberikan.
-        this.liter = liter; // Menginisialisasi liter dengan jumlah liter yang diberikan.
-        this.totalBayar = liter * bbm.getHargaPerLiter(); // Menghitung totalBayar berdasarkan jumlah liter dan harga per liter BBM.
+    public TransaksiPengisian(Kendaraan kendaraan, bbm bbm, double liter) {
+        this.kendaraan = kendaraan;
+        this.bbm = bbm;
+        this.liter = liter;
+        this.totalBayar = liter * bbm.getHargaPerLiter();
     }
 
     public Kendaraan getKendaraan() { // Metode getter untuk mendapatkan objek Kendaraan dari transaksi.
         return kendaraan; // Mengembalikan objek kendaraan.
     }
 
-    public BBM getBbm() { // Metode getter untuk mendapatkan objek BBM dari transaksi.
-        return bbm; // Mengembalikan objek bbm.
+    public bbm getBbm() {
+        return bbm;
     }
 
     public double getLiter() { // Metode getter untuk mendapatkan jumlah liter BBM yang diisi.

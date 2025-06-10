@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class BBM { // Deklarasi kelas bernama BBM.
     
     String namaBBM; // Mendeklarasikan variabel instance untuk menyimpan nama BBM (misalnya, "Pertalite").
@@ -6,6 +7,15 @@ class BBM { // Deklarasi kelas bernama BBM.
     public BBM(String namaBBM, double hargaPerLiter) { // Konstruktor kelas BBM, digunakan untuk membuat objek BBM baru.
         this.namaBBM = namaBBM; // Menginisialisasi namaBBM dengan nilai yang diberikan saat objek dibuat.
         this.hargaPerLiter = hargaPerLiter; // Menginisialisasi hargaPerLiter dengan nilai yang diberikan.
+=======
+public class bbm {
+    String namaBBM;
+    double hargaPerLiter;
+
+    public bbm(String namaBBM, double hargaPerLiter) {
+        this.namaBBM = namaBBM;
+        this.hargaPerLiter = hargaPerLiter;
+>>>>>>> ff1f19ed23fc4b3428407eea02580798a5bc289d
     }
 
     public String getNamaBBM() { // Metode getter untuk mendapatkan nama BBM.

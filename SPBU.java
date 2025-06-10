@@ -111,6 +111,7 @@ class HistoriTransaksi { // Deklarasi kelas HistoriTransaksi untuk menyimpan riw
     }
 }
 
+<<<<<<< HEAD
 public class SPBU { // Deklarasi kelas utama SPBU.
     LLQueue antrianKendaraan; // Objek LLQueue untuk mengelola antrian kendaraan.
     HistoriTransaksi riwayatTransaksi; // Objek HistoriTransaksi untuk menyimpan riwayat transaksi.
@@ -131,6 +132,28 @@ public class SPBU { // Deklarasi kelas utama SPBU.
             daftarBBM[jumlahBBM++] = bbm; // Menambahkan BBM ke array dan menambah jumlahBBM.
         } else { // Jika kapasitas daftar BBM penuh,
             System.out.println("Kapasitas daftar BBM penuh, tidak bisa menambah jenis BBM baru."); // Mencetak pesan error.
+=======
+public class SPBU {
+    LLQueue antrianKendaraan; 
+    HistoriTransaksi riwayatTransaksi; 
+    bbm[] daftarBBM; 
+    int jumlahBBM = 0; 
+
+    public SPBU() {
+        antrianKendaraan = new LLQueue();
+        riwayatTransaksi = new HistoriTransaksi();
+        daftarBBM = new bbm[5];
+        tambahJenisBBM(new bbm("Pertalite", 10000.0));
+        tambahJenisBBM(new bbm("Pertamax", 14000.0));
+        tambahJenisBBM(new bbm("Pertamax Turbo", 15300.0));
+    }
+
+    public void tambahJenisBBM(bbm bbm) {
+        if (jumlahBBM < daftarBBM.length) {
+            daftarBBM[jumlahBBM++] = bbm;
+        } else {
+            System.out.println("Kapasitas daftar BBM penuh, tidak bisa menambah jenis BBM baru.");
+>>>>>>> ff1f19ed23fc4b3428407eea02580798a5bc289d
         }
     }
 
@@ -172,6 +195,7 @@ public class SPBU { // Deklarasi kelas utama SPBU.
         for (int i = 0; i < jumlahBBM; i++) { // Loop untuk menampilkan daftar BBM yang tersedia.
             System.out.println((i + 1) + ". " + daftarBBM[i].getNamaBBM() + " (Rp " + String.format("%.2f", daftarBBM[i].getHargaPerLiter()) + "/L)"); // Mencetak nama dan harga BBM.
         }
+<<<<<<< HEAD
         BBM selectedBBM = null; // Variabel untuk menyimpan BBM yang dipilih.
         int pilihanBBM; // Variabel untuk menyimpan pilihan BBM dari pengguna.
 
@@ -183,6 +207,19 @@ public class SPBU { // Deklarasi kelas utama SPBU.
         } else { // Jika pilihan tidak valid,
             System.out.println("Pilihan tidak valid. Menggunakan Pertalite sebagai default."); // Mencetak pesan peringatan.
             selectedBBM = daftarBBM[0]; // Mengatur Pertalite sebagai BBM default.
+=======
+        bbm selectedBBM = null;
+        int pilihanBBM;
+        
+        System.out.print("Masukkan pilihan BBM (nomor): ");
+        pilihanBBM = Integer.parseInt(scanner.nextLine()); 
+        
+        if (pilihanBBM > 0 && pilihanBBM <= jumlahBBM) {
+            selectedBBM = daftarBBM[pilihanBBM - 1];
+        } else {
+            System.out.println("Pilihan tidak valid. Menggunakan Pertalite sebagai default."); 
+            selectedBBM = daftarBBM[0]; 
+>>>>>>> ff1f19ed23fc4b3428407eea02580798a5bc289d
         }
 
         double liter; // Variabel untuk menyimpan jumlah liter BBM.

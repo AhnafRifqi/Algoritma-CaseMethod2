@@ -16,8 +16,8 @@ class Kendaraan { // Deklarasi kelas bernama Kendaraan.
         System.out.println("Merk: " + merk); // Mencetak merk kendaraan.
     }
 
-    public String getPlatNomor() { // Metode getter untuk mendapatkan plat nomor kendaraan.
-        return platNomor; // Mengembalikan nilai dari platNomor.
+    public String getPlatNomor() {
+        return platNomor;
     }
 
     public String getTipe() { // Metode getter untuk mendapatkan tipe kendaraan.
