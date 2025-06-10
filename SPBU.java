@@ -114,19 +114,19 @@ class HistoriTransaksi {
 public class SPBU {
     LLQueue antrianKendaraan; 
     HistoriTransaksi riwayatTransaksi; 
-    BBM[] daftarBBM; 
+    bbm[] daftarBBM; 
     int jumlahBBM = 0; 
 
     public SPBU() {
         antrianKendaraan = new LLQueue();
         riwayatTransaksi = new HistoriTransaksi();
-        daftarBBM = new BBM[5];
-        tambahJenisBBM(new BBM("Pertalite", 10000.0));
-        tambahJenisBBM(new BBM("Pertamax", 14000.0));
-        tambahJenisBBM(new BBM("Pertamax Turbo", 15300.0));
+        daftarBBM = new bbm[5];
+        tambahJenisBBM(new bbm("Pertalite", 10000.0));
+        tambahJenisBBM(new bbm("Pertamax", 14000.0));
+        tambahJenisBBM(new bbm("Pertamax Turbo", 15300.0));
     }
 
-    public void tambahJenisBBM(BBM bbm) {
+    public void tambahJenisBBM(bbm bbm) {
         if (jumlahBBM < daftarBBM.length) {
             daftarBBM[jumlahBBM++] = bbm;
         } else {
@@ -172,7 +172,7 @@ public class SPBU {
         for (int i = 0; i < jumlahBBM; i++) {
             System.out.println((i + 1) + ". " + daftarBBM[i].getNamaBBM() + " (Rp " + String.format("%.2f", daftarBBM[i].getHargaPerLiter()) + "/L)");
         }
-        BBM selectedBBM = null;
+        bbm selectedBBM = null;
         int pilihanBBM;
         
         System.out.print("Masukkan pilihan BBM (nomor): ");
