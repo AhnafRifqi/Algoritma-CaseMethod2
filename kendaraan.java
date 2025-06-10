@@ -15,7 +15,7 @@ class Kendaraan {
         System.out.println("Merk: " + merk);
     }
 
-    public String getPlatNomor() {
+    public String getPlatNomor() { //MENGAMBIL DATA DARI ATRIBUT KENDARAAN
         return platNomor;
     }
 

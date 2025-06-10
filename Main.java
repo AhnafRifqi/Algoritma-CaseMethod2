@@ -19,7 +19,9 @@ public class Main {
 
         do {
             tampilkanMenu(); 
-            pilihan = Integer.parseInt(scanner.nextLine()); 
+            //pilihan = Integer.parseInt(scanner.nextLine()); 
+            pilihan = scanner.nextInt();
+            scanner.nextLine();
             
             switch (pilihan) {
                 case 1:
